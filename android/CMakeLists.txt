@@ -13,3 +13,7 @@ add_library(react-native-turbofs            SHARED
 include_directories(
             ../cpp
 )
+
+# Link the React Native JSI and other necessary libraries
+find_library(log-lib log)
+target_link_libraries(react-native-turbofs ${log-lib})

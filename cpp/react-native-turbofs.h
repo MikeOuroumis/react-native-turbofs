@@ -4,7 +4,7 @@
 #include <string>
 
 namespace turbofs {
-  std::string readFile(const std::string& filePath); // New function
+  std::string readFile(const std::string& filePath); 
 }
 
 #endif /* TURBOFS_H */
