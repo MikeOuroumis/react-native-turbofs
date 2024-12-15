@@ -1,6 +1,6 @@
 {
   "name": "react-native-turbofs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A high-performance file system library for React Native using TurboModules.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
