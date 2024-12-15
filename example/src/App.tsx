@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-turbofs';
-
-const result = multiply(3, 7);
+import { readFile } from 'react-native-turbofs';
 
 export default function App() {
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    const read = async () => {
+      const cont = await readFile('path/of/the/file');
+      setContent(cont);
+      console.log('🚀 ~ read ~ cont:', cont);
+    };
+    read();
+  }, []);
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text style={styles.text}>Result: {content}</Text>
     </View>
   );
 }
@@ -16,5 +25,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#000',
+  },
+  text: {
+    color: '#FFF',
   },
 });
