@@ -11,11 +11,14 @@ class TurbofsModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
-  override fun multiply(a: Double, b: Double): Double {
-    return a * b
-  }
+  override fun readFile(filePath: String, promise: Promise) {
+    try {
+        val content = turbofs.readFile(filePath) // Call the C++ implementation
+        promise.resolve(content)
+    } catch (e: Exception) {
+        promise.reject("READ_FILE_ERROR", e.message)
+    }
+}
 
   companion object {
     const val NAME = "Turbofs"
