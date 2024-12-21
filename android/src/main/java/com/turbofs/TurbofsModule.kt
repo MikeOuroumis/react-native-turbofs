@@ -21,7 +21,17 @@ class TurbofsModule(reactContext: ReactApplicationContext) :
         }
     }
 
+    override fun readDir(dirPath: String, promise: Promise) { // Added 'override'
+        try {
+            val files = nativeReadDir(dirPath)
+            promise.resolve(files)
+        } catch (e: Exception) {
+            promise.reject("READ_DIR_ERROR", "Failed to read directory at $dirPath", e)
+        }
+    }
+
     private external fun nativeReadFile(filePath: String): String
+    private external fun nativeReadDir(dirPath: String): Array<String>
 
     companion object {
         const val NAME = "Turbofs"
